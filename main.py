@@ -16,10 +16,10 @@ def main():
     args = parser.parse_args()
     
     # Import needed modules
-    from kblam.knowledge_base import KnowledgeBase
-    from kblam.models import KBLAM
-    from kblam.processors import generate_synthetic_kb, preprocess_corpus
-    from kblam.training import train_adapter, train_on_large_corpus, generate_qa_pairs
+    from kblam_ollama.knowledge_base import KnowledgeBase
+    from kblam_ollama.models import KBLAM
+    from kblam_ollama.processors import generate_synthetic_kb, preprocess_corpus
+    from kblam_ollama.training import train_adapter, train_on_large_corpus, generate_qa_pairs
     
     # Initialize knowledge base
     kb = KnowledgeBase()

@@ -5,7 +5,7 @@ import random
 
 def generate_synthetic_kb(num_triples: int = 100):
     """Generate a synthetic KB for testing"""
-    from kblam.knowledge_base import KnowledgeBase
+    from kblam_ollama.knowledge_base import KnowledgeBase
     
     kb = KnowledgeBase()
     
@@ -52,7 +52,7 @@ def preprocess_corpus(corpus_dir, output_file):
         print("Then download the English model: python -m spacy download en_core_web_sm")
         return []
     
-    from kblam.knowledge_base import KnowledgeBase
+    from kblam_ollama.knowledge_base import KnowledgeBase
     kb = KnowledgeBase()
     
     # Get all text files in the corpus directory
