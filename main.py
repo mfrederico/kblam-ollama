@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 def main():
     parser = argparse.ArgumentParser(description="KBLAM Training Tool")
-    parser.add_argument('--mode', choices=['train', 'large-corpus', 'query'], required=True, help='Operation mode')
+    parser.add_argument('--mode', choices=['train', 'large-corpus', 'query', 'preprocess'], required=True, help='Operation mode')
     parser.add_argument('--kb_path', default='knowledge_base.json', help='Path to knowledge base JSON file')
     parser.add_argument('--adapter_path', default='models/adapter.pt', help='Path to save/load adapter')
     parser.add_argument('--model', default='llama3.2', help='Ollama model name')
@@ -12,6 +12,7 @@ def main():
     parser.add_argument('--corpus_dir', help='Directory containing corpus text files')
     parser.add_argument('--epochs', type=int, default=10, help='Number of training epochs')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size for training')
+    parser.add_argument('--use_llm', action='store_true', help='Use LLM for keyword extraction in preprocess mode')
     
     args = parser.parse_args()
     
@@ -24,7 +25,24 @@ def main():
     # Initialize knowledge base
     kb = KnowledgeBase()
     
-    if args.mode == 'large-corpus':
+    if args.mode == 'preprocess':
+        if not args.corpus_dir:
+            print("Error: --corpus_dir is required for preprocess mode")
+            return
+            
+        print("\n" + "="*80)
+        print("CORPUS PREPROCESSING MODE")
+        if args.use_llm:
+            print(f"Method: LLM-based extraction using {args.model}")
+        else:
+            print("Method: spaCy-based extraction")
+        print(f"Input directory: {args.corpus_dir}")
+        print(f"Output knowledge base: {args.kb_path}")
+        print("="*80 + "\n")
+        
+        preprocess_corpus(args.corpus_dir, args.kb_path, use_llm=args.use_llm, model_name=args.model)
+    
+    elif args.mode == 'large-corpus':
         if not args.corpus_dir:
             print("Error: --corpus_dir is required for large-corpus mode")
             return
