@@ -111,7 +111,7 @@ def preprocess_corpus(corpus_dir, output_file):
     print(f"Created knowledge base with {len(kb.triples)} triples")
     return kb.triples
 
-def extract_triples_with_llm(text, doc_name, model_name="llama3"):
+def extract_triples_with_llm(text, doc_name, model_name="llama3.2"):
     """Use ollama to extract structured knowledge from text"""
     import requests
     

@@ -7,7 +7,7 @@ def main():
     parser.add_argument('--mode', choices=['train', 'large-corpus', 'query'], required=True, help='Operation mode')
     parser.add_argument('--kb_path', default='knowledge_base.json', help='Path to knowledge base JSON file')
     parser.add_argument('--adapter_path', default='models/adapter.pt', help='Path to save/load adapter')
-    parser.add_argument('--model', default='llama3', help='Ollama model name')
+    parser.add_argument('--model', default='llama3.2', help='Ollama model name')
     parser.add_argument('--question', help='Question to answer in query mode')
     parser.add_argument('--corpus_dir', help='Directory containing corpus text files')
     parser.add_argument('--epochs', type=int, default=10, help='Number of training epochs')
