@@ -47,6 +47,8 @@ def preprocess_corpus(corpus_dir, output_file):
         import spacy
         # Load SpaCy model for NLP processing
         nlp = spacy.load("en_core_web_sm")
+        # Watch for warhings here in RAM usage
+        nlp.max_length = 2000000
     except ImportError:
         print("Error: spaCy is not installed. Please install it with: pip install spacy")
         print("Then download the English model: python -m spacy download en_core_web_sm")
@@ -73,11 +75,7 @@ def preprocess_corpus(corpus_dir, output_file):
             
             # Extract document summary as description
             summary = text[:500] + "..." if len(text) > 500 else text
-            kb.add_triple({
-                "name": doc_name,
-                "property": "description",
-                "value": summary
-            })
+            kb.add_triple(doc_name, "description", summary)
             
             # Extract named entities as properties
             entities = {}
@@ -91,11 +89,7 @@ def preprocess_corpus(corpus_dir, output_file):
                 # Limit to the top 5 entities to avoid too much noise
                 top_entities = list(set(entity_values))[:5]
                 if top_entities:
-                    kb.add_triple({
-                        "name": doc_name,
-                        "property": f"contains_{entity_type.lower()}",
-                        "value": ", ".join(top_entities)
-                    })
+                    kb.add_triple(doc_name, f"contains_{entity_type.lower()}", ", ".join(top_entities))
             
             # Extract keywords
             keywords = []
@@ -107,11 +101,7 @@ def preprocess_corpus(corpus_dir, output_file):
             from collections import Counter
             top_keywords = [word for word, _ in Counter(keywords).most_common(10)]
             if top_keywords:
-                kb.add_triple({
-                    "name": doc_name,
-                    "property": "keywords",
-                    "value": ", ".join(top_keywords)
-                })
+                kb.add_triple(doc_name, "keywords", ", ".join(top_keywords))
                 
         except Exception as e:
             print(f"Error processing {file_name}: {e}")

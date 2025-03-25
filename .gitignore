@@ -1,2 +1,8 @@
 models/*
 kblam_ollama/__pycache__
+bin/
+kblam_ollama.egg-info/
+lib/
+lib64
+pyvenv.cfg
+share/
