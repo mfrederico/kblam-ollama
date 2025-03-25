@@ -1,0 +1,16 @@
+*Based off of microsoft kblam:*
+updated to use ollama
+--
+https://www.microsoft.com/en-us/research/blog/introducing-kblam-bringing-plug-and-play-external-knowledge-to-llms/?utm_source=kblam.ai&utm_medium=website
+--
+Prerequisites
+You'll need to install the following packages:
+torch
+sentence-transformers
+requests
+numpy
+--
+Run the training mode first: python kblam.py --mode train
+Then you can query it: python kblam.py --mode query
+--
+Example Query:
