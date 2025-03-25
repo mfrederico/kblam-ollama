@@ -236,7 +236,7 @@ class KBLAM:
         
         # Encode relevant triples into knowledge tokens
         self.knowledge_tokens = {}
-        for i, triple in relevant_triples:
+        for i, triple in enumerate(relevant_triples):
             key_proj, value_proj = self.encode_triple(triple)
             self.knowledge_tokens[i] = (key_proj, value_proj)
             
