@@ -17,7 +17,7 @@ sentence-transformers
 requests
 numpy
 --
-Run the training mode first: python kblam.py --mode train
-Then you can query it: python kblam.py --mode query
+Run the training mode first: python kblam-ollama.py --mode train
+Then you can query it: python kblam-ollama.py --mode query
 --
 Example Query:
