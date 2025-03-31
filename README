@@ -1,3 +1,10 @@
+--
+Wanting to make this accessible to a wider audience of ollama users, I've attempted a claude+ollama version of this based off anthropic reading/interpreting the whitepaper (and some futzing around): 
+It seems like it does the trick for training, yet feels like ollama does its standard "fine-tuning" and creation of a checkpoints file instead of the rectangular "attention";  It seems more like a KVP lookup than anything.
+This leads me to believe that in order for this to actually be implemented properly (for ollama / llama.cpp), I'd have to change how models are run in llama.cpp in order to take advantage of the actual "rectangular attention" concept as outlined in the original whitepaper.
+
+Using llama3.2 (3.2B) on a 3060 for the whole shebang.
+-----------------------------------------
 *Based off of microsoft kblam:*
 updated to use ollama
 --
